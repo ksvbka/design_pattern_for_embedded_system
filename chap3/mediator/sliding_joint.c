@@ -23,21 +23,21 @@ void sliding_joint_destroy(sliding_joint_t* const me) {
 
 void sliding_joint_config(sliding_joint_t* const me, char devide_id) {
     me->devide_id = devide_id;
-    me->angle = 0;
+    me->value = 0;
 }
 
-void sliding_joint_rotate ( sliding_joint_t* const me, int angle) {
+void sliding_joint_move ( sliding_joint_t* const me, int value) {
     /* demo */
 
-    /* Update current angle*/
-    me->angle += angle;
-    printf("sliding joint: ID %d \t %d \n",me->devide_id, me->angle);
+    /* Update current value*/
+    me->value += value;
+    printf("Sliding joint: ID %d \t %d \n",me->devide_id, me->value);
 }
 
-void sliding_joint_set_angle(sliding_joint_t* const me, int angle) {
-    me->angle = angle;
+void sliding_joint_set_value(sliding_joint_t* const me, int value) {
+    me->value = value;
 }
 
-int  sliding_joint_get_angle(sliding_joint_t* const me) {
-        return me->angle;
+int  sliding_joint_get_value(sliding_joint_t* const me) {
+        return me->value;
 }
