@@ -76,6 +76,8 @@ void display_client_unsubcribe(display_client_t* me, gas_sensor_t* const gas_sen
         if (gas_sensor->clients[i].pObject == me) {
             gas_sensor->clients[i].pObject = NULL;
             gas_sensor->clients[i].fn_handler = NULL;
+            gas_sensor->n_client--;
+            return
         }
     }
 }
