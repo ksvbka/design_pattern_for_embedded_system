@@ -19,14 +19,15 @@ void motor_cleanup(motor_proxy_t* const me) {
 
 motor_proxy_t* motor_create() {
     motor_proxy_t* new_motor = (motor_proxy_t*) malloc(sizeof(motor_proxy_t));
-    if (!new_motor)
+    if (new_motor != NULL)
         motor_init(new_motor);
     return new_motor;
 }
 
 void motor_destroy(motor_proxy_t* const me) {
-    if (!me)
+    if (me != NULL)
         motor_cleanup(me);
+    free(me);
 }
 
 void motor_configure(motor_proxy_t* const me, unsigned int leng, unsigned int * addr) {

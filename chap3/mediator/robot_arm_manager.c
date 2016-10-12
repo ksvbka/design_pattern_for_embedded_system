@@ -31,7 +31,7 @@ void robot_arm_manager_cleanup(robot_arm_manager_t* const me) {
 }
 
 void robot_arm_manager_destroy(robot_arm_manager_t* const me) {
-    if (!me) {
+    if (me != NULL) {
         robot_arm_manager_cleanup(me);
         free(me);
     }
@@ -39,7 +39,7 @@ void robot_arm_manager_destroy(robot_arm_manager_t* const me) {
 
 robot_arm_manager_t* robot_arm_manager_create() {
     robot_arm_manager_t* rb_manager = (robot_arm_manager_t*) malloc(sizeof(robot_arm_manager_t));
-    if (!rb_manager) {
+    if (rb_manager != NULL) {
         robot_arm_manager_init(rb_manager);
     }
     return rb_manager;

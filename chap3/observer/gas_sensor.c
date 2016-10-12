@@ -19,7 +19,7 @@ void gas_sensor_cleanup(gas_sensor_t* const me )
 gas_sensor_t* gas_sensor_create()
 {
     gas_sensor_t* sensor = (gas_sensor_t*) malloc(sizeof(gas_sensor_t));
-    if (!sensor) {
+    if (sensor != NULL) {
         gas_sensor_init(sensor);
     }
     return sensor;
@@ -27,7 +27,7 @@ gas_sensor_t* gas_sensor_create()
 
 void gas_sensor_destroy(gas_sensor_t* const me)
 {
-    if (!me)
+    if (me != NULL)
         gas_sensor_cleanup(me);
     free(me);
 }
