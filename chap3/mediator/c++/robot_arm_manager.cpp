@@ -5,6 +5,13 @@ Position Robot_arm_manager::get_current_pos() {
     return curr_position_;
 }
 
+Robot_arm_manager::~Robot_arm_manager() {
+    for(int i = 0; i < joints_.size(); ++i) {
+        if(joints_[i] != nullptr)
+            delete joints_[i];
+    }
+    goto_origin();
+}
 void Robot_arm_manager::compute_path(Position goal) {
     /* Create data for testing, not implement algorithm compute path ^^*/
     /* Assume to go to position goal need 2 step:
@@ -43,7 +50,7 @@ void Robot_arm_manager::compute_path(Position goal) {
 }
 void Robot_arm_manager::goto_origin() {
     std::cout << "Goto origin: " << std::endl;
-    for(auto motor : joints_){
+    for (auto motor : joints_) {
         motor->move(-motor->get_value());
     }
 }
@@ -51,10 +58,10 @@ void Robot_arm_manager::goto_origin() {
 
 void Robot_arm_manager::goto_position(Position goal) {
     this->compute_path(goal);
-    std::cout << "Number of step: " << path_.size() <<std::endl;
+    std::cout << "Number of step: " << path_.size() << std::endl;
     int step_index = 0;
     for (auto step : path_) {
-        std::cout << "Step " << ++step_index <<std::endl;
+        std::cout << "Step " << ++step_index << std::endl;
         for (auto move_cmd : step.get_action()) {
             joints_[move_cmd.get_device_id() - 1]->move(move_cmd.get_value());
         }

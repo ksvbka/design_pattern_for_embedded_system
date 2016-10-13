@@ -13,7 +13,7 @@ class Robot_arm_manager {
         curr_position_ = pos;
         joints_ = joints;
    }
-    ~Robot_arm_manager() {goto_origin();};
+    ~Robot_arm_manager() {};
 
     Position get_current_pos();
     void goto_position(Position goal);
